@@ -6,7 +6,7 @@ from docx.shared import Length
 from docx.parts.document import DocumentPart
 from typing import Literal, cast
 from docx.enum.text import WD_ALIGN_PARAGRAPH
-from errors import ComplianceChecker
+from src.errors import ComplianceChecker
 from utils.spaceUtils import SpaceAttributes
 from utils.expected.expectedTitleAttrs import ExpectedTitle
 from utils.fontEnum import FontNames
@@ -89,7 +89,7 @@ class MainTitle:
             return name
 
     # set. default later
-    def getAlignment(self) -> WD_ALIGN_PARAGRAPH | None | ComplianceChecker:
+    def getAlignment(self) -> WD_ALIGN_PARAGRAPH | ComplianceChecker:
         if self.title.alignment:
             return self.title.alignment
 
@@ -106,6 +106,9 @@ class MainTitle:
         value = self.getFromBaseStyle(style, 'paragraph_format', 'alignment')
         if isinstance(value, WD_ALIGN_PARAGRAPH):
             return value
+
+        # wrong get the default. value later!!!!
+        return ComplianceChecker('alignment', 'center', 'value Not found')
 
     # set. default later
     def getSpace(self) -> SpaceAttributes | None | ComplianceChecker:
@@ -199,8 +202,10 @@ class MainTitle:
         value = self.getAlignment()
         if value != WD_ALIGN_PARAGRAPH.CENTER:
             if isinstance(value, WD_ALIGN_PARAGRAPH):
-                checker = ComplianceChecker('Incorrect ALignment', ExpectedTitle.EXPECTED_FONT_ALIGNMENT, value.name.lower())
-                result['alignmnet'] = checker.serilizer() 
+                checker = ComplianceChecker('Incorrect ALignment', ExpectedTitle.EXPECTED_ALIGNMENT, value.name.lower())
+            else:
+                checker = value
+            result['alignmnet'] = checker.serilizer() 
 
         space = self.getSpace()
 

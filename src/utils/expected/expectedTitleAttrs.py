@@ -1,10 +1,10 @@
-from utils.fontEnum import FontNames
+from src.utils.fontEnum import FontNames
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 class ExpectedTitle:
     EXPECTED_FONT_SIZE = 20.0
     EXPECTED_FONT_NAME = FontNames.Roman.value
-    EXPECTED_FONT_ALIGNMENT = WD_ALIGN_PARAGRAPH.CENTER
+    EXPECTED_ALIGNMENT = WD_ALIGN_PARAGRAPH.CENTER
     EXPECTED_BOLD = False
 
     class EXPECTED_SPACE:
