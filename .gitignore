@@ -3,3 +3,4 @@ env
 .vscode
 samples
 .DS_Store
+.git
