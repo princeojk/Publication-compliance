@@ -7,9 +7,9 @@ from docx.parts.document import DocumentPart
 from typing import Literal, cast
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from src.errors import ComplianceChecker
-from utils.spaceUtils import SpaceAttributes
-from utils.expected.expectedTitleAttrs import ExpectedTitle
-from utils.fontEnum import FontNames
+from src.utils.spaceUtils import SpaceAttributes
+from src.utils.expected.expectedTitleAttrs import ExpectedTitle
+from src.utils.fontEnum import FontNames
 
 StyleType = bool | float | None | str | WD_ALIGN_PARAGRAPH
 CustomAttr = Literal['bold', 'size', 'name', 'alignment', 'space_after', 'space_before']
